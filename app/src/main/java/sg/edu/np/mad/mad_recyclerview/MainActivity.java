@@ -10,6 +10,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -107,7 +108,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Set the message in the view
         TextView txtMessage = dialogLayout.findViewById(R.id.txtMessage);// Find id in the custom dialog
-        txtMessage.setText("Are you sure you want to delete\n" + mMyAdapter.getTaskName(position) + "?");
+        //Setting the message using HTML format so I can have a bold and normal text
+        txtMessage.setText(Html.fromHtml( "<div>Are you sure you want to delete<br/>"+ "<b>" + mMyAdapter.getTaskName(position) + "?</b></div>"));
 
         //Set trash in image view
         ImageView imgTrash = dialogLayout.findViewById(R.id.imgTrash); //Find the image view in the custom dialog
@@ -121,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Log.d(TAG, mMyAdapter.getTaskName(position) + "is going to be deleted");
+                Log.d(TAG, mMyAdapter.getTaskName(position) + "task is going to be deleted");
                 mMyAdapter.removeItem(position); //Remove item from the data in adapter
             }
         });
@@ -155,5 +157,8 @@ public class MainActivity extends AppCompatActivity {
         //auto hide keyboard after entry
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(rv.getWindowToken(), 0);
+
+        //Clear the text from the view
+        mEdAddTask.setText("");
     }
 }
