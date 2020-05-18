@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         mMyAdapter.setOnTextClicked(new OnTextClickedListener() {
             @Override
             public void onTextClick(int position) {
-                Log.d(TAG, "Delete prompt is triggered for position " + position);
+                Log.d(TAG, "Delete prompt is triggered for position " + position + ", task name " + mMyAdapter.getTaskName(position));
 
                 //TODO: Add in the dialog
                 confirmDeleteDialog(position);
@@ -121,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                Log.d(TAG, mMyAdapter.getTaskName(position) + "is going to be deleted");
                 mMyAdapter.removeItem(position); //Remove item from the data in adapter
-                Log.d(TAG, mMyAdapter.getTaskName(position) + "is deleted");
             }
         });
 
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Log.d(TAG, mMyAdapter.getTaskName(position) + "task not getting deleted");
+                Log.d(TAG, mMyAdapter.getTaskName(position) + " task not getting deleted");
             }
         });
 
