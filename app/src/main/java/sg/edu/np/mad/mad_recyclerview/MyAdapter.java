@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -37,18 +38,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
         //Inflate the layout
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_layout, parent, false);
-
-        //TODO: If text view is clicked delete the content
-
         return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
         //Set task name
         holder.mTextView.setText(mTaskList.get(position));
 
+        //If text view is clicked delete the content
+        //Click listener for the text
+        holder.mTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //trigger the text clicked call back
+                listener.onTextClick(position);
+            }
+        });
 
     }
 
@@ -75,17 +82,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     }
 
-
-
-    //TODO: Click listener for the text
-    //Have a callback to say the text is clicked
-    private void onTextClicked(View v){
-
+    //Give back the current array list
+    public ArrayList<String> getTaskList() {
+        return mTaskList;
     }
-
 }
 
 interface OnTextClickedListener {
 
-    public void onTextClick(String title);
+    public void onTextClick(int postition);
 }

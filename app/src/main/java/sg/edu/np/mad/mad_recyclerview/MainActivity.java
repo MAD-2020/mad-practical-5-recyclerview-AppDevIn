@@ -65,13 +65,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mMyAdapter.addItem(mEdAddTask.getText().toString().trim());
+
+                showNewEntry(mRecyclerView, mMyAdapter.getTaskList());
             }
         });
 
         //When the text view clieked in will give a dialog
         mMyAdapter.setOnTextClicked(new OnTextClickedListener() {
             @Override
-            public void onTextClick(String title) {
+            public void onTextClick(int position) {
+                Log.d(TAG, "Delete prompt is triggered for position " + position);
+
                 //TODO: Add in the dialog
             }
         });
@@ -88,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void showNewEntry(RecyclerView rv, ArrayList data){
         //scroll to the last item of the recyclerview
-        rv.scrollToPosition(data.size() - 1);
+        rv.scrollToPosition(data.size());
 
         //auto hide keyboard after entry
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
