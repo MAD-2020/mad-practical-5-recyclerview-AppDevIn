@@ -37,15 +37,12 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(layoutManager);
 
-        mMyAdapter = new MyAdapter((ArrayList<String>) Arrays.asList("Do MAD", "Part 1", "Part 2", "Part 3"));
+        mMyAdapter = new MyAdapter(new ArrayList<String>(Arrays.asList("Do MAD", "Part 1", "Part 2", "Part 3")));
+        mRecyclerView.setAdapter(mMyAdapter);
 
-        //TODO: Find IDs for button and EditTask
-
-        //To enter the task name
-
-        //Used to submit the task name
-
-
+        //Find IDs for button and EditTask
+        mEdAddTask = findViewById(R.id.txtTaskInput); //To enter the task name
+        mBtnAddTask = findViewById(R.id.btnSubmit); // Used to submit the task name
 
 
 

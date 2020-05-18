@@ -23,6 +23,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     public MyAdapter(ArrayList<String> taskList) {
         mTaskList = taskList;
         this.listener = null;
+
+        Log.d(TAG, "Total items: " + mTaskList.size());
     }
 
     public void setOnTextClicked(OnTextClickedListener onTextClickedListener){
@@ -44,14 +46,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        //TODO: Set task name
+        //Set task name
+        holder.mTextView.setText(mTaskList.get(position));
 
 
     }
 
     @Override
     public int getItemCount() {
-        Log.d(TAG, "Total items: " + mTaskList.size());
+
         return mTaskList.size();
     }
 
