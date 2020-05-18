@@ -38,7 +38,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         //Inflate the layout
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_layout, parent, false);
 
-        //TODO: If textview is clicked delete the content
+        //TODO: If text view is clicked delete the content
 
         return new MyViewHolder(view);
     }
@@ -65,6 +65,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     public void addItem(String task){
         mTaskList.add(task);
+        notifyItemInserted(mTaskList.size());
         Log.d(TAG, "New Task added, " + task);
     }
 
@@ -73,6 +74,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         mTaskList.remove(position);
 
     }
+
+
 
     //TODO: Click listener for the text
     //Have a callback to say the text is clicked

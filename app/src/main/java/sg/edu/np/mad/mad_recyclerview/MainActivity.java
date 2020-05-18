@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -59,8 +60,15 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         Log.d(TAG, "GUI in the foreground and interactive");
 
-        //TODO: Click listener for the button to add into the array
+        //Click listener for the button to add text into the array
+        mBtnAddTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mMyAdapter.addItem(mEdAddTask.getText().toString().trim());
+            }
+        });
 
+        //When the text view clieked in will give a dialog
         mMyAdapter.setOnTextClicked(new OnTextClickedListener() {
             @Override
             public void onTextClick(String title) {
