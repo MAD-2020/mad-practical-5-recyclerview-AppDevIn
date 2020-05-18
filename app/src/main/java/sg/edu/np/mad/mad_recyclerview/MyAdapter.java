@@ -72,19 +72,30 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     public void addItem(String task){
         mTaskList.add(task);
+
+        //Informing the adapter and view of the new item
         notifyItemInserted(mTaskList.size());
         Log.d(TAG, "New Task added, " + task);
     }
 
     public void removeItem(int position){
         Log.d(TAG, "Removing " + mTaskList.get(position));
+
         mTaskList.remove(position);
+
+        //Informing the adapter and view after removing
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, mTaskList.size());
 
     }
 
     //Give back the current array list
     public ArrayList<String> getTaskList() {
         return mTaskList;
+    }
+
+    public String getTaskName(int position){
+        return mTaskList.get(position);
     }
 }
 
