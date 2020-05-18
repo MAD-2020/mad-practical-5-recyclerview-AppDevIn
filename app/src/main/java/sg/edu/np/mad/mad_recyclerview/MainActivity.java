@@ -1,21 +1,78 @@
 package sg.edu.np.mad.mad_recyclerview;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
+
+    final String TAG = "TaskList";
+
+    RecyclerView mRecyclerView;
+    MyAdapter mMyAdapter;
+    EditText mEdAddTask;
+    Button mBtnAddTask;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.d(TAG, "Creating GUI");
+
+        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView.setHasFixedSize(true);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        mRecyclerView.setLayoutManager(layoutManager);
+
+        mMyAdapter = new MyAdapter((ArrayList<String>) Arrays.asList("Do MAD", "Part 1", "Part 2", "Part 3"));
+
+        //TODO: Find IDs for button and EditTask
+
+        //To enter the task name
+
+        //Used to submit the task name
+
+
+
+
+
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "GUI ready");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "GUI in the foreground and interactive");
+
+        //TODO: Click listener for the button to add into the array
+
+        mMyAdapter.setOnTextClicked(new OnTextClickedListener() {
+            @Override
+            public void onTextClick(String title) {
+                //TODO: Add in the dialog
+            }
+        });
+    }
+
+    //TODO: To confirm whatever if you want it deleted
 
     /**
      * Upon calling this method, the keyboard will retract
