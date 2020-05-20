@@ -79,7 +79,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     }
 
     public void removeItem(int position){
-        Log.d(TAG, "Removing " + mTaskList.get(position) + " tasksdafsda");
+        Log.d(TAG, "Removing " + mTaskList.get(position));
 
         mTaskList.remove(position);
 

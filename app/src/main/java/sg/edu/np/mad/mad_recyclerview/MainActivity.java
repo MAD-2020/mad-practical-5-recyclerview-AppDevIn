@@ -1,6 +1,7 @@
 package sg.edu.np.mad.mad_recyclerview;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
         mMyAdapter = new MyAdapter(new ArrayList<String>(Arrays.asList("Do MAD", "Part 1", "Part 2", "Part 3")));
         mRecyclerView.setAdapter(mMyAdapter);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+
 
         //Find IDs for button and EditTask
         mEdAddTask = findViewById(R.id.txtTaskInput); //To enter the task name
